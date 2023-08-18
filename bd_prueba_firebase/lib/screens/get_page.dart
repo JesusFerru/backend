@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../backend/models/person.dart';
 import '../backend/services/person_services.dart';
 
 class GetPage extends StatelessWidget {
-  // final List peopleList = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,18 +24,15 @@ class GetPage extends StatelessWidget {
               child: Text('No data available.'),
             );
           } else {
-            List peopleList =
-                snapshot.data!; // Obtiene la lista de personas del snapshot
+            List peopleList = snapshot.data!;
+
             return ListView.builder(
               itemCount: peopleList.length,
               itemBuilder: (context, index) {
-                Person person = Person.fromFirestore(
-                  peopleList[index], // Obtén el DocumentSnapshot de la lista
-                );
-                return ListTile(
-                  title: Text(person.personName),
-                  subtitle: Text(person.personSex), // Cambia a personSex
-                );
+                return Text("${peopleList[index]['personName']} "
+                    " ${peopleList[index]['email']} "
+                    "${peopleList[index]['hobbies']} "
+                    "${peopleList[index]['personSex']}");
               },
             );
           }
@@ -48,31 +41,3 @@ class GetPage extends StatelessWidget {
     );
   }
 }
-           
-
-
-
-
-
-
-           
-//             if (snapshot.hasData) {
-//               return ListView.builder(
-//                 itemCount: peopleList.length,
-//                 itemBuilder: (context, index) {
-//                   Map<String, dynamic> personData = peopleList[index];
-//                   return ListTile(
-//                     title: Text(personData['personName']),
-//                     subtitle: Text(personData['sex']),
-//                   );
-//                 },
-//               );
-//             } else {
-//               return const Center(
-//                 child: CircularProgressIndicator(),
-//               );
-//             }
-//           })),
-//     );
-//   }
-// }

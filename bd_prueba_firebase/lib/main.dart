@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Prueba app',
-      initialRoute: '/',
+      initialRoute: AppRouter.main,
       routes: AppRouter.routes,
       onGenerateRoute: (settings) {
         return MaterialPageRoute(

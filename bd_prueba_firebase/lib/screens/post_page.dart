@@ -1,3 +1,4 @@
+import 'package:bd_prueba_firebase/Routes/routes.dart';
 import 'package:flutter/material.dart';
 
 import '../backend/models/person.dart';
@@ -13,24 +14,13 @@ class PostPage extends StatefulWidget {
 class _PostPageState extends State<PostPage> {
   int _counter = 0;
 
-  void _incrementCounter() async {
-    // const personId = '6xTeeVnriACZ50MGmbxi';
-
-    // // Obtener una persona por su ID
-    // getPersonById(personId).then((person) {
-    //   if (person != null) {
-    //     logger.info('Persona encontrada: ${person.personName}');
-    //   } else {
-    //     logger.info('Persona no encontrada');
-    //   }
-    // });
-
+  void post_Counter() async {
     Person newPerson = Person(
-        personName: 'Jesus', // Nombre
+        personName: 'Luis', // Nombre
         paternalLastName: 'De', // 1er apellido
         maternalLastName: 'Tal', // 2do apellido
         phoneNumber: 80000011, // Celular
-        email: 'jesus@example.com', // Correo
+        email: 'Luis@example.com', // Correo
         userName: 'sutanito', // Usuario
         personSex: 'Male', // Sexo
         birthDate: DateTime(2000, 12, 25), // Fecha de nacimiento
@@ -47,7 +37,7 @@ class _PostPageState extends State<PostPage> {
         facebookAccount: 'jesus_facebook.com',
         instagramAccount: '@instaJesus',
         twitterAccount: 'JesusTweet',
-        linkedinAccount: 'jesus_Linkedin');
+        linkedinAccount: 'luis_Linkedin');
     setState(() {
       _counter++;
     });
@@ -58,15 +48,24 @@ class _PostPageState extends State<PostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // title: Text(widget.title),
+        backgroundColor:
+            Colors.lightBlue, //Theme.of(context).colorScheme.inversePrimary,
+        title: const Text("Prueba Create"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_forward),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'Create Person',
             ),
             Text(
               '$_counter',
@@ -76,10 +75,10 @@ class _PostPageState extends State<PostPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: post_Counter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

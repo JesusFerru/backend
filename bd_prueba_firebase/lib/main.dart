@@ -17,8 +17,6 @@ void main() async {
     print('${record.level.name}: ${record.time}: ${record.message}');
   });
   runApp(const MyApp());
-
-  // Llama al método postPerson para guardar los datos en Firestore
 }
 
 class MyApp extends StatelessWidget {

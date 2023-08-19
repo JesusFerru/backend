@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../backend/models/person.dart';
 import '../backend/services/person_services.dart';
 
 class DeletePage extends StatefulWidget {

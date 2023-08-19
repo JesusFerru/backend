@@ -15,7 +15,6 @@ class ChannelCategory {
     );
   }
 
-  // Convierte una instancia de ChannelCategory en un mapa Firestore
   Map<String, dynamic> toFirestore() {
     return {
       'channelCategoryName': channelCategoryName,

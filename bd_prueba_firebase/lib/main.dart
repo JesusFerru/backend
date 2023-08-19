@@ -2,9 +2,7 @@ import 'package:bd_prueba_firebase/screens/page_404.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-
 import 'Routes/routes.dart';
-import 'backend/services/person_services.dart';
 import 'firebase_options.dart';
 
 void main() async {

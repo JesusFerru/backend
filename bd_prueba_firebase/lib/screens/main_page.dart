@@ -1,4 +1,5 @@
 import 'package:bd_prueba_firebase/screens/post_page.dart';
+import 'package:bd_prueba_firebase/screens/put_page.dart';
 import 'package:flutter/material.dart';
 
 import 'get_page.dart';
@@ -47,14 +48,14 @@ class _MainPageState extends State<MainPage> {
                   MaterialPageRoute(builder: (context) => const PostPage()),
                 );
               },
-              child: Text('Post'),
+              child: const Text('Post'),
             ),
             ElevatedButton(
               onPressed: () {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (context) => PutPage()),
-                //   );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PutPage()),
+                );
               },
               child: const Text('Put'),
             ),
@@ -65,7 +66,7 @@ class _MainPageState extends State<MainPage> {
                 //   MaterialPageRoute(builder: (context) => DeletePage()),
                 // );
               },
-              child: Text('Delete'),
+              child: const Text('Delete'),
             ),
           ],
         ),

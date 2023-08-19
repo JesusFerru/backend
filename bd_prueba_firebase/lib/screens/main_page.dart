@@ -2,6 +2,7 @@ import 'package:bd_prueba_firebase/screens/post_page.dart';
 import 'package:bd_prueba_firebase/screens/put_page.dart';
 import 'package:flutter/material.dart';
 
+import 'delete_page.dart';
 import 'get_page.dart';
 import 'getbyid_page.dart';
 
@@ -61,10 +62,10 @@ class _MainPageState extends State<MainPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => DeletePage()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DeletePage()),
+                );
               },
               child: const Text('Delete'),
             ),

@@ -2,6 +2,7 @@ import 'package:bd_prueba_firebase/screens/post_page.dart';
 import 'package:flutter/material.dart';
 
 import 'get_page.dart';
+import 'getbyid_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key, required this.title});
@@ -32,10 +33,10 @@ class _MainPageState extends State<MainPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (context) => GetByIdPage()),
-                //   );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => GetByIdPage()),
+                );
               },
               child: Text('Get By Id'),
             ),

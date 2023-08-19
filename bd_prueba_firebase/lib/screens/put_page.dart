@@ -1,10 +1,11 @@
+import 'package:bd_prueba_firebase/examples/person_ex.dart';
 import 'package:flutter/material.dart';
-import '../backend/models/person.dart';
 import '../backend/services/person_services.dart';
 
 class PutPage extends StatelessWidget {
   final TextEditingController _personIdController = TextEditingController();
-  //static const String personId = "PEk7a0Ytea8G5wgCJBzq";
+  static const String requestTest = 'Ingresa el Person ID para editar:';
+  static const String fieldTest = "Person ID";
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +18,11 @@ class PutPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Ingresa el Person ID para editar:'),
+            Text(fieldTest),
             SizedBox(height: 8.0),
             TextField(
               controller: _personIdController,
-              decoration: InputDecoration(labelText: 'Person ID'),
+              decoration: InputDecoration(labelText: fieldTest),
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
@@ -38,29 +39,7 @@ class PutPage extends StatelessWidget {
   }
 
   void _updatePerson(BuildContext context, String personId) async {
-    final updatedPerson = Person(
-        personName: 'Luis', // Nombre
-        paternalLastName: 'Ferrufino', // 1er apellido
-        maternalLastName: 'Burgos', // 2do apellido
-        phoneNumber: 65942169, // Celular
-        email: 'ljesus@example.com', // Correo
-        userName: 'luisyisus', // Usuario
-        personSex: 'Male', // Sexo
-        birthDate: DateTime(2002, 11, 21), // Fecha de nacimiento
-        hobbies: [
-          'Videogames',
-          'Natación',
-          'Futbol',
-          'Volleyball',
-          'Leer',
-        ], // Hobbies [] --> Solo acepta 5, si se vuelven 6 se hace nulo
-        civilStatus: 'Divorcied',
-        registerDate: DateTime(2023, 8, 6),
-        profilePhoto: 'profile-photo-url',
-        facebookAccount: 'jesus_facebook.com',
-        instagramAccount: '@instaJesus',
-        twitterAccount: 'luisTweet',
-        linkedinAccount: 'luis_Linkedin');
+    final updatedPerson = personExample();
 
     try {
       await putPerson(personId, updatedPerson);

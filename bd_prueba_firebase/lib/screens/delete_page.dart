@@ -32,16 +32,18 @@ class _DeletePageState extends State<DeletePage> {
               onPressed: () async {
                 final personId = _personIdController.text;
                 try {
+                  //Cambiar metodo
                   await deletePerson(personId);
+                  //-------------------
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Persona eliminada correctamente'),
+                      content: Text('Eliminadao correctamente'),
                     ),
                   );
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Error al eliminar persona: $e'),
+                      content: Text('Error al eliminar : $e'),
                     ),
                   );
                 }

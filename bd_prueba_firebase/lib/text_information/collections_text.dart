@@ -3,6 +3,12 @@ class CollectionsText {
   static const String channelCatCollection = 'channel_category';
   static const String networkCollection = 'network';
   static const String companyCollection = 'company';
+  static const String channelFeeCollection = 'channel_fee';
+  static const String bankCollection = 'bank';
+  static const String personBankCollection = 'person_bank';
+  static const String businessCatCollection = 'business_category';
+  static const String businessTagCollection = 'business_tag';
+  static const String companyPremiumCollection = 'company_premium';
 }
 
 class ServicesText {

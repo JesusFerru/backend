@@ -1,14 +1,7 @@
-import 'package:bd_prueba_firebase/backend/models/channel_cat.dart';
-import 'package:bd_prueba_firebase/backend/models/person_network.dart';
-
-import 'package:bd_prueba_firebase/backend/services/person_network._services.dart';
-import 'package:bd_prueba_firebase/examples/channel_ex.dart';
-import 'package:bd_prueba_firebase/examples/per_net_ex.dart';
 import 'package:bd_prueba_firebase/examples/person_ex.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../backend/models/person.dart';
-import '../backend/services/person_services.dart';
 import 'package:bd_prueba_firebase/backend/services/base_services.dart';
 
 import '../text_information/collections_text.dart';

@@ -5,6 +5,8 @@ import '../backend/services/base_services.dart';
 import '../text_information/collections_text.dart';
 
 class DeletePage extends StatefulWidget {
+  const DeletePage({super.key});
+
   @override
   _DeletePageState createState() => _DeletePageState();
 }
@@ -41,10 +43,10 @@ class _DeletePageState extends State<DeletePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(titleTest),
+        title: const Text(titleTest),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

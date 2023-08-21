@@ -65,3 +65,30 @@ Future<void> deletePersonNetwork(String id) async {
     logger.warning('${ServicesText.removeError} $e');
   }
 }
+
+// Future<void> deletePersonAndNetworkReferences(String personId) async {
+//   final db = FirebaseFirestore.instance;
+//   final personRef = db.collection('people').doc(personId);
+
+//   try {
+//     await db.runTransaction((transaction) async {
+//       final personSnapshot = await transaction.get(personRef);
+//       final personNetworkCollection = db.collection('person_network');
+
+//       if (personSnapshot.exists) {
+//         transaction.delete(personRef);
+
+//         final personNetworkQuery =
+//             personNetworkCollection.where('personId', isEqualTo: personRef);
+
+//         final personNetworkSnapshot = await transaction.get(personNetworkQuery);
+//         for (final personNetworkDoc in personNetworkSnapshot.docs) {
+//           final personNetworkRef = personNetworkDoc.reference;
+//           transaction.delete(personNetworkRef);
+//         }
+//       }
+//     });
+//   } catch (e) {
+//     print('Error en la transaccion: $e');
+//   }
+// }

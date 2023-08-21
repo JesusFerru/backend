@@ -8,7 +8,7 @@ class BaseService<T> {
   final logger = Logger('MyApp');
   BaseService(this.collection);
 
-  Future<List<T>> getAll<T>(
+  Future<List<T>> getAll<U>(
       T Function(DocumentSnapshot<Map<String, dynamic>> snapshot)
           fromFirestore) async {
     List<T> list = [];
@@ -19,6 +19,23 @@ class BaseService<T> {
           fromFirestore(document as DocumentSnapshot<Map<String, dynamic>>));
     }
     return list;
+  }
+
+  Future<T?> getById<U>(
+      String id,
+      T Function(DocumentSnapshot<Map<String, dynamic>> fromFirestore)
+          fromFirestore) async {
+    DocumentSnapshot documentSnapshot = await collection.doc(id).get();
+
+    if (documentSnapshot.exists) {
+      Map<String, dynamic>? data =
+          documentSnapshot.data() as Map<String, dynamic>?;
+      if (data != null) {
+        return fromFirestore(
+            documentSnapshot as DocumentSnapshot<Map<String, dynamic>>);
+      }
+    }
+    return null;
   }
 
   // Future<T?> getById(String id) async {
@@ -35,7 +52,7 @@ class BaseService<T> {
   //   return null;
   // }
 
-  Future<void> post<T>(
+  Future<void> post<U>(
     T document,
     Map<String, dynamic> Function(T) toFirestore,
   ) async {
@@ -48,21 +65,34 @@ class BaseService<T> {
     }
   }
 
-//   Future<void> put(String id, T updatedItem) async {
-//     try {
-//       Map<String, dynamic> updatedData = updatedItem.toFirestore();
-//       await collection.doc(id).update(updatedData);
-//     } catch (e) {
-//       print('Error al hacer PUT: $e');
-//     }
-//   }
+  Future<void> put<U>(
+    String id,
+    T updatedItem,
+    Map<String, dynamic> Function(T) toFirestore,
+  ) async {
+    try {
+      Map<String, dynamic> updatedData = toFirestore(updatedItem);
+      await collection.doc(id).update(updatedData);
+      logger.info(ServicesText.putSuccesful);
+    } catch (e) {
+      logger.warning('${ServicesText.putError} $e');
+    }
+  }
 
-//   Future<void> delete(String id) async {
-//     try {
-//       await collection.doc(id).delete();
-//     } catch (e) {
-//       print('Error al hacer DELETE: $e');
-//     }
-//   }
-// }
+  // Future<void> put(String id, T updatedItem) async {
+  //   try {
+  //     Map<String, dynamic> updatedData = updatedItem.toFirestore();
+  //     await collection.doc(id).update(updatedData);
+  //   } catch (e) {
+  //     print('Error al hacer PUT: $e');
+  //   }
+  // }
+
+  Future<void> delete(String id) async {
+    try {
+      await collection.doc(id).delete();
+    } catch (e) {
+      print('Error al hacer DELETE: $e');
+    }
+  }
 }

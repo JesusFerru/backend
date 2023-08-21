@@ -1,8 +1,13 @@
 class CollectionsText {
   static const String peopleCollection = 'people';
-  static const String ChannelCatCollection = 'channel_category';
-
+  static const String channelCatCollection = 'channel_category';
   static const String networkCollection = 'network';
+  static const String channelFeeCollection = 'channel_fee';
+  static const String bankCollection = 'bank';
+  static const String personBankCollection = 'person_bank';
+  static const String businessCatCollection = 'business_category';
+  static const String businessTagCollection = 'business_tag';
+  static const String companyCollection = 'company_premium';
 }
 
 class ServicesText {

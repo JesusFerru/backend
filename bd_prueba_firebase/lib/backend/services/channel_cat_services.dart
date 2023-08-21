@@ -4,7 +4,7 @@ import '../../text_information/collections_text.dart';
 import '../models/channel_cat.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
-String channelCat = CollectionsText.ChannelCatCollection;
+String channelCat = CollectionsText.channelCatCollection;
 CollectionReference collection = db.collection(channelCat);
 final logger = Logger('MyApp');
 

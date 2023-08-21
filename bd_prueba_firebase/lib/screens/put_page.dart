@@ -7,30 +7,32 @@ class PutPage extends StatelessWidget {
   static const String requestTest = 'Ingresa el Person ID para editar:';
   static const String fieldTest = "Person ID";
 
+  PutPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar Info'),
+        title: const Text('Editar Info'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(fieldTest),
-            SizedBox(height: 8.0),
+            const Text(fieldTest),
+            const SizedBox(height: 8.0),
             TextField(
               controller: _personIdController,
-              decoration: InputDecoration(labelText: fieldTest),
+              decoration: const InputDecoration(labelText: fieldTest),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
                 final personId = _personIdController.text;
                 _updatePerson(context, personId);
               },
-              child: Text('Update Person'),
+              child: const Text('Update Person'),
             ),
           ],
         ),
@@ -54,14 +56,14 @@ class PutPage extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Update Result'),
+          title: const Text('Update Result'),
           content: Text(message),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );

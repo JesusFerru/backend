@@ -5,6 +5,8 @@ import '../backend/services/base_services.dart';
 import '../text_information/collections_text.dart';
 
 class GetByIdPage extends StatefulWidget {
+  const GetByIdPage({super.key});
+
   @override
   _GetByIdPageState createState() => _GetByIdPageState();
 }
@@ -45,26 +47,26 @@ class _GetByIdPageState extends State<GetByIdPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(titleTest),
+        title: const Text(titleTest),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
               controller: _idController,
-              decoration: InputDecoration(labelText: fieldTest),
+              decoration: const InputDecoration(labelText: fieldTest),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _getById,
-              child: Text('Get by ID'),
+              child: const Text('Get by ID'),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             if (_object != null)
               Card(
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

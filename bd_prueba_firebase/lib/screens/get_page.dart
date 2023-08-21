@@ -29,10 +29,12 @@ class GetPage extends StatelessWidget {
             return ListView.builder(
               itemCount: peopleList.length,
               itemBuilder: (context, index) {
-                return Text("${peopleList[index]['personName']} "
-                    " ${peopleList[index]['email']} "
-                    "${peopleList[index]['hobbies']} "
-                    "${peopleList[index]['personSex']}");
+                return Text(
+                    "${peopleList[index]['personName']}"
+                    "${peopleList[index]['email']}"
+                    "${peopleList[index]['hobbies']}"
+                    "${peopleList[index]['personSex']}"
+                );
               },
             );
           }

@@ -1,24 +1,27 @@
+import 'package:bd_prueba_firebase/backend/models/company.dart';
+import 'package:bd_prueba_firebase/backend/models/person_network.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logging/logging.dart';
 import '../../text_information/collections_text.dart';
 import '../models/channel_cat.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
-String channelCat = CollectionsText.channelCatCollection;
-CollectionReference collection = db.collection(channelCat);
+String company = CollectionsText.companyCollection;
 final logger = Logger('MyApp');
+CollectionReference collection =
+    db.collection(CollectionsText.companyCollection);
 
-Future<List> getChannelCategory() async {
-  List channelList = [];
+Future<List> getCompany() async {
+  List companyList = [];
   QuerySnapshot queryTeam = await collection.get();
 
   for (var document in queryTeam.docs) {
-    channelList.add(document.data());
+    companyList.add(document.data());
   }
-  return channelList;
+  return companyList;
 }
 
-Future<ChannelCategory?> getChannelCategoryById(String id) async {
+Future<ChannelCategory?> getCompanyById(String id) async {
   DocumentSnapshot documentSnapshot = await collection.doc(id).get();
 
   if (documentSnapshot.exists) {
@@ -32,30 +35,30 @@ Future<ChannelCategory?> getChannelCategoryById(String id) async {
   return null;
 }
 
-Future<void> postChannelCategory(ChannelCategory person) async {
+Future<void> postCompany(Company company) async {
   try {
-    Map<String, dynamic> personData = person.toFirestore();
+    Map<String, dynamic> companyData = company.toFirestore();
 
-    await collection.add(personData);
+    await collection.add(companyData);
     logger.info(ServicesText.postSuccesful);
   } catch (e) {
     logger.warning('${ServicesText.postError}$e');
   }
 }
 
-Future<void> putChannelCategory(
-    String id, ChannelCategory updatedPerson) async {
+Future<void> putCompany(
+    String id, Company updatedCompany) async {
   try {
-    Map<String, dynamic> updatedData = updatedPerson.toFirestore();
+    Map<String, dynamic> updateData = updatedCompany.toFirestore();
 
-    await collection.doc(id).update(updatedData);
+    await collection.doc(id).update(updateData);
     logger.info(ServicesText.putSuccesful);
   } catch (e) {
     logger.warning('${ServicesText.putError} $e');
   }
 }
 
-Future<void> deleteChannelCategory(String id) async {
+Future<void> deleteCompany(String id) async {
   try {
     await collection.doc(id).delete();
     logger.info(ServicesText.removeSuccesful);

@@ -22,8 +22,8 @@ class AppRouter {
     getpage: (context) => GetPage(),
     postpage: (context) => const PostPage(),
     // loginPage: (context) => const LoginPage(),
-    getbyidpage: (context) => GetByIdPage(),
+    getbyidpage: (context) => const GetByIdPage(),
     putpage: (context) => PutPage(),
-    deletepage: (context) => DeletePage(),
+    deletepage: (context) => const DeletePage(),
   };
 }

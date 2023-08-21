@@ -1,8 +1,10 @@
 import 'package:bd_prueba_firebase/examples/person_ex.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import '../backend/models/person.dart';
-import '../backend/services/person_services.dart';
+import 'package:bd_prueba_firebase/backend/services/base_services.dart';
+
+import '../text_information/collections_text.dart';
 
 class PostPage extends StatefulWidget {
   const PostPage({super.key});
@@ -13,43 +15,37 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   int _counter = 0;
+  static const String createDocument = 'Crear Documento';
+  static const String collection = CollectionsText.peopleCollection;
+  FirebaseFirestore db = FirebaseFirestore.instance;
 
   void post_Counter() async {
-    // Person newPerson = Person(
-    //     personName: 'Luis', // Nombre
-    //     paternalLastName: 'De', // 1er apellido
-    //     maternalLastName: 'Tal', // 2do apellido
-    //     phoneNumber: 80000011, // Celular
-    //     email: 'Luis@example.com', // Correo
-    //     userName: 'sutanito', // Usuario
-    //     personSex: 'Male', // Sexo
-    //     birthDate: DateTime(2000, 12, 25), // Fecha de nacimiento
-    //     hobbies: [
-    //       'Videogames',
-    //       'Tennis',
-    //       'Futbol',
-    //       'Volleyball',
-    //       'Sleeping',
-    //     ], // Hobbies [] --> Solo acepta 5, si se vuelven 6 se hace nulo
-    //     civilStatus: 'Divorcied',
-    //     registerDate: DateTime.now(),
-    //     profilePhoto: 'profile-photo-url',
-    //     facebookAccount: 'jesus_facebook.com',
-    //     instagramAccount: '@instaJesus',
-    //     twitterAccount: 'JesusTweet',
-    //     linkedinAccount: 'luis_Linkedin');
     setState(() {
       _counter++;
     });
-    await postPerson(personExample());
+    try {
+      BaseService<Person> personService = BaseService<Person>(
+        db.collection(collection),
+      );
+
+      await personService.post(personExample(), (data) => data.toFirestore());
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('Documento en $collection agregado correctamente.')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error al agregar el documento: $e')),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:
-            Colors.lightBlue, //Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.lightBlue,
         title: const Text("Prueba Create"),
         actions: [
           IconButton(
@@ -65,7 +61,7 @@ class _PostPageState extends State<PostPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Create Person',
+              createDocument,
             ),
             Text(
               '$_counter',

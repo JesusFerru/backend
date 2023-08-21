@@ -37,10 +37,10 @@ class _MainPageState extends State<MainPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => GetByIdPage()),
+                  MaterialPageRoute(builder: (context) => const GetByIdPage()),
                 );
               },
-              child: Text('Get By Id'),
+              child: const Text('Get By Id'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -64,7 +64,7 @@ class _MainPageState extends State<MainPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DeletePage()),
+                  MaterialPageRoute(builder: (context) => const DeletePage()),
                 );
               },
               child: const Text('Delete'),

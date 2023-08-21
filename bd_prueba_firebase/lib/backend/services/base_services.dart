@@ -38,20 +38,6 @@ class BaseService<T> {
     return null;
   }
 
-  // Future<T?> getById(String id) async {
-  //   DocumentSnapshot documentSnapshot = await collection.doc(id).get();
-
-  //   if (documentSnapshot.exists) {
-  //     Map<String, dynamic>? data =
-  //         documentSnapshot.data() as Map<String, dynamic>?;
-  //     if (data != null) {
-  //       return T.fromFirestore(
-  //           documentSnapshot as DocumentSnapshot<Map<String, dynamic>>) as T;
-  //     }
-  //   }
-  //   return null;
-  // }
-
   Future<void> post<U>(
     T document,
     Map<String, dynamic> Function(T) toFirestore,

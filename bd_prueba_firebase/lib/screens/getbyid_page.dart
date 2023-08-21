@@ -27,6 +27,11 @@ class _GetByIdPageState extends State<GetByIdPage> {
           id, (snapshot) => Person.fromFirestore(snapshot));
       setState(() {
         _object = person;
+        if (_object != null)
+        {
+          
+        }
+
       });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -61,21 +66,20 @@ class _GetByIdPageState extends State<GetByIdPage> {
               child: Text('Get by ID'),
             ),
             SizedBox(height: 16.0),
-            if (_object != null)
-              Card(
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Person Name: ${_object!.personName}'),
-                      Text('Email: ${_object!.email}'),
-                      Text('Main Hobbie: ${_object!.hobbies?[0]}'),
-                      Text('Sex: ${_object!.personSex}'),
-                    ],
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Person Name: ${_object!.personName}'),
+                        Text('Email: ${_object!.email}'),
+                        Text('Main Hobbie: ${_object!.hobbies?[0]}'),
+                        Text('Sex: ${_object!.personSex}'),
+                      ],
+                    ),
                   ),
                 ),
-              ),
           ],
         ),
       ),

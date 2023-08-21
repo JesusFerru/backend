@@ -1,6 +1,6 @@
 import 'package:bd_prueba_firebase/backend/models/channel_cat.dart';
 import 'package:bd_prueba_firebase/backend/models/person_network.dart';
-import 'package:bd_prueba_firebase/backend/services/channel_cat_services.dart';
+
 import 'package:bd_prueba_firebase/backend/services/person_network._services.dart';
 import 'package:bd_prueba_firebase/examples/channel_ex.dart';
 import 'package:bd_prueba_firebase/examples/per_net_ex.dart';
@@ -34,15 +34,12 @@ class _PostPageState extends State<PostPage> {
       BaseService<Person> personService = BaseService<Person>(
         db.collection(collection),
       );
-      // await postPerson(personExample());
-      //await postChannelCategory(ChannelCategoryExample4());
-      //await postPersonNetwork(personNetworkExample());
+
       await personService.post(personExample(), (data) => data.toFirestore());
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: const Text(
-                'Documento en ${collection} agregado correctamente.')),
+        const SnackBar(
+            content: Text('Documento en $collection agregado correctamente.')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(

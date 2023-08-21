@@ -1,5 +1,4 @@
 import 'package:bd_prueba_firebase/backend/models/company.dart';
-import 'package:bd_prueba_firebase/backend/models/person_network.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logging/logging.dart';
 import '../../text_information/collections_text.dart';

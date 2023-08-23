@@ -1,4 +1,6 @@
+import 'package:bd_prueba_firebase/backend/services/auth_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../backend/models/person.dart';
@@ -10,6 +12,8 @@ class GetPage extends StatelessWidget {
   static const String collection = CollectionsText.peopleCollection;
   final BaseService<Person> personService =
       BaseService<Person>(FirebaseFirestore.instance.collection(collection));
+  final AuthService authService = AuthService();
+  
 
   GetPage({super.key});
 

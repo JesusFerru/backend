@@ -1,7 +1,7 @@
+import 'package:bd_prueba_firebase/backend/services/auth_services.dart';
 import 'package:bd_prueba_firebase/text_information/collections_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logging/logging.dart';
-
 import '../models/person.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
@@ -54,6 +54,16 @@ Future<void> postPerson(Person person) async {
     Map<String, dynamic> personData = person.toFirestore();
 
     await collection.add(personData);
+    logger.info(ServicesText.postSuccesful);
+  } catch (e) {
+    logger.warning('${ServicesText.postError}$e');
+  }
+}
+
+Future<void> personRegister(Person person, AuthService authService) async {
+  try {
+    Map<String, dynamic> personData = person.toFirestore();
+    await collection.doc(authService.getCurrentUser()?.uid).set(personData);
     logger.info(ServicesText.postSuccesful);
   } catch (e) {
     logger.warning('${ServicesText.postError}$e');

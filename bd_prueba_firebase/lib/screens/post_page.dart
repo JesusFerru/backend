@@ -2,7 +2,7 @@ import 'package:bd_prueba_firebase/examples/person_ex.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../backend/models/person.dart';
-import 'package:bd_prueba_firebase/backend/services/base_services.dart';
+import 'package:bd_prueba_firebase/backend/services/api_services.dart';
 
 import '../text_information/collections_text.dart';
 
@@ -24,7 +24,7 @@ class _PostPageState extends State<PostPage> {
       _counter++;
     });
     try {
-      BaseService<Person> personService = BaseService<Person>(
+      ApiService<Person> personService = ApiService<Person>(
         db.collection(collection),
       );
 

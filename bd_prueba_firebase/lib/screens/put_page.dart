@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../backend/models/person.dart';
 
-import '../backend/services/base_services.dart';
+import '../backend/services/api_services.dart';
 import '../text_information/collections_text.dart';
 
 // ignore: must_be_immutable
@@ -16,6 +16,22 @@ class PutPage extends StatelessWidget {
   static const String fieldTest = "Person ID";
 
   PutPage({super.key});
+
+  void _updatePerson(BuildContext context, String personId) async {
+    final updatedPerson = personExample();
+    ApiService<Person> personService =
+        ApiService<Person>(db.collection(collection));
+    try {
+      await personService.put(
+        personId,
+        updatedPerson,
+        (data) => data.toFirestore(),
+      );
+      _showDialog(context, 'Actualizado exitosamente.');
+    } catch (e) {
+      _showDialog(context, 'Error al actualizar: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,24 +62,6 @@ class PutPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _updatePerson(BuildContext context, String personId) async {
-    final updatedPerson = personExample();
-    BaseService<Person> personService = BaseService<Person>(db.collection(
-        collection)); // Reemplaza yourCollectionReference con la referencia correcta
-
-    try {
-      await personService.put(
-        personId,
-        updatedPerson,
-        (data) => data
-            .toFirestore(), // Aquí se llama al método toFirestore de tu modelo
-      );
-      _showDialog(context, 'Actualizado exitosamente.');
-    } catch (e) {
-      _showDialog(context, 'Error al actualizar: $e');
-    }
   }
 
   void _showDialog(BuildContext context, String message) {

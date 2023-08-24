@@ -19,6 +19,22 @@ Future<List> getPerson() async {
   return peopleList;
 }
 
+Future<Person?> getByPhoneNumber(int phoneNumber) async {
+  final QuerySnapshot<Map<String, dynamic>> querySnapshot = await db
+      .collection(people)
+      .where('phoneNumber', isEqualTo: phoneNumber)
+      .limit(1)
+      .get();
+  print("Query snapshot data: ${querySnapshot.docs}");
+  return Person.fromFirestore(querySnapshot.docs.first);
+  // if (querySnapshot.docs.isNotEmpty) {
+  //   return Person.fromFirestore(querySnapshot.docs.first);
+
+  // } else {
+  //   return null;
+  // }
+}
+
 Future<Person?> getPersonById(String personId) async {
   DocumentSnapshot documentSnapshot = await collection.doc(personId).get();
 

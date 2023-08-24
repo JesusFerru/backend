@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logging/logging.dart';
 import '../../text_information/collections_text.dart';
 
-class BaseService<T> {
+class ApiService<T> {
   final CollectionReference collection;
   final logger = Logger('MyApp');
-  BaseService(this.collection);
+  ApiService(this.collection);
 
   Future<List<T>> getAll<U>(
       T Function(DocumentSnapshot<Map<String, dynamic>> snapshot)

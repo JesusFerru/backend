@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../backend/models/person.dart';
-import '../backend/services/base_services.dart';
+import '../backend/services/api_services.dart';
 import '../text_information/collections_text.dart';
 //import '../backend/services/person_services.dart';
 
 class GetPage extends StatelessWidget {
   static const String collection = CollectionsText.peopleCollection;
-  final BaseService<Person> personService =
-      BaseService<Person>(FirebaseFirestore.instance.collection(collection));
+  final ApiService<Person> personService =
+      ApiService<Person>(FirebaseFirestore.instance.collection(collection));
 
   GetPage({super.key});
 

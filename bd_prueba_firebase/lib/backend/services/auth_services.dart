@@ -4,6 +4,7 @@ class AuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   
+   
   Future<UserCredential> signInWithEmailAndPassword(String email, String password) async {
       try {
         return await _auth.signInWithEmailAndPassword(email: email, password: password);
@@ -30,6 +31,23 @@ class AuthService {
   }
 
   Future<void> linkWithEmailAndPass(String email, String password) async {
+    try {
+      User? user = _auth.currentUser;
+      if (user != null) {
+        AuthCredential emailAuthCredential = EmailAuthProvider.credential(
+          email: email,
+          password: password,
+        );
+
+        await user.linkWithCredential(emailAuthCredential);
+      }
+    } catch (e) {
+      // Manejo de errores
+      rethrow;
+    }
+  }
+
+  Future<void> linkWithPhoneNumber(String email, String password) async {
     try {
       User? user = _auth.currentUser;
       if (user != null) {

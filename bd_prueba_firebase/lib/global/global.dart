@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bd_prueba_firebase/backend/services/auth_services.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
-User? currentFirebaseUser;
+final AuthService authService = AuthService();

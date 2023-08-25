@@ -13,7 +13,6 @@ class GetPage extends StatelessWidget {
   final BaseService<Person> personService =
       BaseService<Person>(FirebaseFirestore.instance.collection(collection));
   final AuthService authService = AuthService();
-  
 
   GetPage({super.key});
 

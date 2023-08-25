@@ -1,6 +1,9 @@
+import 'package:bd_prueba_firebase/backend/services/auth_services.dart';
+import 'package:bd_prueba_firebase/backend/services/person_services.dart';
 import 'package:bd_prueba_firebase/examples/person_ex.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:bd_prueba_firebase/global/global.dart';
 import '../backend/models/person.dart';
 import 'package:bd_prueba_firebase/backend/services/base_services.dart';
 
@@ -18,20 +21,21 @@ class _PostPageState extends State<PostPage> {
   static const String createDocument = 'Crear Documento';
   static const String collection = CollectionsText.peopleCollection;
   FirebaseFirestore db = FirebaseFirestore.instance;
-
+  
   void post_Counter() async {
     setState(() {
       _counter++;
     });
     try {
-      BaseService<Person> personService = BaseService<Person>(
-        db.collection(collection),
-      );
+      // BaseService<Person> personService = BaseService<Person>(
+      //   db.collection(collection),
+      // );
+      await authService.signInWithEmailAndPassword(personExample().email, "123456");
+      await personRegister(personExample(), authService);
+      print(authService.getCurrentUser()?.email);
       // await postPerson(personExample());
       //await postChannelCategory(ChannelCategoryExample4());
       //await postPersonNetwork(personNetworkExample());
-      await personService.post(personExample(), (data) => data.toFirestore());
-
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
             content: Text(
